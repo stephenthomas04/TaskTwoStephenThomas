@@ -1,93 +1,75 @@
-import React, {useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet, Dimensions, 
+  Text, View } from 'react-native';
 
-const FlexDirectionBasics = () => {
-  const [flexDirection, setflexDirection] = useState('column');
+import colors  from './app/config/colors';
 
-  return (
-    <PreviewLayout
-      label="flexDirection"
-      values={['column', 'row', 'row-reverse', 'column-reverse']}
-      selectedValue={flexDirection}
-      setSelectedValue={setflexDirection}>
-      <View style={[styles.box, {backgroundColor: 'powderblue'}]} />
-      <View style={[styles.box, {backgroundColor: 'skyblue'}]} />
-      <View style={[styles.box, {backgroundColor: 'steelblue'}]} />
-    </PreviewLayout>
-  );
-};
+export default function App() {
+console.log("Stephen, your app works!");
 
-const PreviewLayout = ({
-  label,
-  children,
-  values,
-  selectedValue,
-  setSelectedValue,
-}) => (
-  <View style={{padding: 10, flex: 1}}>
-    <Text style={styles.label}>{label}</Text>
-    <View style={styles.row}>
-      {values.map(value => (
-        <TouchableOpacity
-          key={value}
-          onPress={() => setSelectedValue(value)}
-          style={[styles.button, selectedValue === value && styles.selected]}>
-          <Text
-            style={[
-              styles.buttonLabel,
-              selectedValue === value && styles.selectedLabel,
-            ]}>
-            {value}
-          </Text>
-        </TouchableOpacity>
-      ))}
-    </View>
-    <View style={[styles.container, {[label]: selectedValue}]}>{children}</View>
+
+
+return (
+<SafeAreaView style={styles.container}>
+<View style={styles.top}>
+  <View style={styles.middle}>
+    <Text style={styles.topText}>
+      <Text>React Native Task 2</Text>
+    </Text>
   </View>
+</View>
+<View style={styles.bottom}>
+</View>
+<StatusBar style="auto" />
+</SafeAreaView>
 );
+}
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: 8,
-    backgroundColor: 'aliceblue',
-  },
-  box: {
-    width: 50,
-    height: 50,
-  },
-  row: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
-  button: {
-    paddingHorizontal: 8,
-    paddingVertical: 6,
-    borderRadius: 4,
-    backgroundColor: 'oldlace',
-    alignSelf: 'flex-start',
-    marginHorizontal: '1%',
-    marginBottom: 6,
-    minWidth: '48%',
-    textAlign: 'center',
-  },
-  selected: {
-    backgroundColor: 'coral',
-    borderWidth: 0,
-  },
-  buttonLabel: {
-    fontSize: 12,
-    fontWeight: '500',
-    color: 'coral',
-  },
-  selectedLabel: {
-    color: 'white',
-  },
-  label: {
-    textAlign: 'center',
-    marginBottom: 10,
-    fontSize: 24,
-  },
-});
+container: {
+flex: 1,
+backgroundColor: colors.primaryColor,
+alignItems: 'center',
+justifyContent: 'center',
+paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+},
 
-export default FlexDirectionBasics;
+top: {
+backgroundColor: colors.primary,
+width: 350,
+height: 100,
+alignItems: 'center',
+justifyContent: 'center',
+//borderRadius: 10,
+//borderTopRightRadius: 105,
+borderColor: 'white',
+borderWidth: 2,
+//borderBottomWidth: 10,
+},
+
+middle: {
+  backgroundColor: colors.primary,
+  width: 250,
+  height: 55,
+  alignItems: 'center',
+  justifyContent: 'center',
+  //borderRadius: 10,
+  //borderTopRightRadius: 105,
+  backgroundColor: colors.secondary,
+  //borderBottomWidth: 10,
+  },
+
+topText: {
+  fontSize: 25,
+  fontWeight: "bold",
+}
+,
+
+bottom: {
+backgroundColor: colors.secondary,
+flex: 2,
+width: 349,
+borderBottomWidth:29,
+borderTopWidth:2,
+borderColor: 'white',
+},  
+});
